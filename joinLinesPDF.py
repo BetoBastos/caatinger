@@ -1,0 +1,16 @@
+import re
+import os
+os.getcwd()
+f=open("TextoComPDF.txt","r")
+content = f.read()
+print(content)
+travado = re.sub("(\.)(\n)", r"kkkkkkk\2", content, flags = re.M)
+joinQuebra = re.sub("(\n)", r" ", travado, flags = re.M)
+destravado = re.sub("kkkkkkk", r".\n", joinQuebra, flags = re.M)
+inicial = re.sub("  ", r" ", destravado, flags = re.M)
+c = re.sub("(^\s)", r"", inicial, flags = re.M)
+print(c)
+g=open("TextoComPDFmod.txt","w")
+g.write(c)
+g.close()
+f.close()
