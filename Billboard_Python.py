@@ -1,10 +1,14 @@
 import requests
 from bs4 import BeautifulSoup
+from bs4 import UnicodeDammit
 import csv
 url="http://www.billboard.com/charts/hot-100"
 r=requests.get(url)
 page_cont=r.content
 print(page_cont)
+suggestion = UnicodeDammit(page_cont)
+suggestion.original_encoding
+#suggestion.unicode_markup
 page_cont_par=BeautifulSoup(r.content,"html.parser")
 containers=page_cont_par.findAll("div",{"class":"chart-row__main-display"})
 filename="musics.csv"
